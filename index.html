@@ -11,12 +11,12 @@
 
 <body>
     <!--Containers-->
-    <main></main>
+    <main class="display-flex align-center justify-center"></main>
     <aside></aside>
     <!--Templates-->
     <template id="formTemplate">
         <form class="form">
-            <input type="text" placeholder="Add Todo" />
+            <input autofocus type="text" placeholder="Add Todo" />
             <button>Add ToDo</button>
         </form>
     </template>
@@ -25,6 +25,10 @@
         <div class="list">
             <ul></ul>
         </div>
+    </template>
+
+    <template id="emptyListTemplate">
+        <div>No todo's added</div>
     </template>
 
     <script src="index.js" type="module"></script>

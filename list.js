@@ -4,8 +4,8 @@ import { pubsub } from "./pubsub.js";
 export const todoList = {
     toDos: [],
     render: function (container) {
-        let template = document.getElementById('listTemplate');
-        let list = template.content.cloneNode(true);
+        const template = document.getElementById('listTemplate');
+        const list = template.content.cloneNode(true);
         container.appendChild(list);
 
         const ul = document.querySelector('.list ul');
