@@ -15,7 +15,7 @@ export const todoList = {
     todoAdded: function (todo) {
         const list = new Set(this.toDos);
         list.add(todo);
-        this.toDos = Array.from(list).sort();
+        this.toDos = Array.from(list).filter(Boolean).sort();
 
         const ul = document.querySelector('.list ul');
         ul.innerHTML = '';
