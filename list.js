@@ -1,9 +1,14 @@
+import { TODO_ADDED } from "./actions.js";
+import { pubsub } from "./pubsub.js";
+
 export const todoList = {
     toDos: [],
     render: function (container) {
         let template = document.getElementById('listTemplate');
         let list = template.content.cloneNode(true);
         container.appendChild(list);
+
+        pubsub.subscribe(TODO_ADDED, this.todoAdded.bind(this));
     },
     todoAdded: function (todo) {
         const list = new Set(this.toDos);
