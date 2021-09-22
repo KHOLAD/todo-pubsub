@@ -1,4 +1,4 @@
-import { TODO_ADDED } from "./actions.js";
+import { TODO_ADDED, TODO_REMOVED } from "./actions.js";
 import { pubsub } from "./pubsub.js";
 
 export const todoList = {
@@ -8,6 +8,8 @@ export const todoList = {
         let list = template.content.cloneNode(true);
         container.appendChild(list);
 
+        const ul = document.querySelector('.list ul');
+        ul.addEventListener('click', this.todoRemoved.bind(this));
         pubsub.subscribe(TODO_ADDED, this.todoAdded.bind(this));
     },
     todoAdded: function (todo) {
@@ -25,5 +27,13 @@ export const todoList = {
             df.appendChild(li);
         });
         ul.appendChild(df);
+    },
+    todoRemoved: function (event) {
+        const item = event.target.closest('li');
+        const todo = item.textContent;
+        this.toDos = this.toDos.filter(nm => nm !== todo);
+        item.parentElement.removeChild(item);
+
+        pubsub.dispatch(TODO_REMOVED, todo);
     }
 };
